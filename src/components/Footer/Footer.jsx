@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <div className='bg-[#1A1919] text-white'>
             <footer className="max-w-7xl px-4 md:px-0 md:w-[80%] mx-auto">
-                <div className="container md:flex justify-between sm:gap-24 py-10  border-b border-[#7E90FE]">
+                <div className="container md:flex justify-between sm:gap-24 py-10  border-b border-[#7E90FE33]">
 
                     <div className="space-y-3 w-4/12">
                         <div className="text-white text-2xl font-semibold">CareerHub</div>

@@ -1,19 +1,36 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
+import bg1 from "../../assets/bg1.png"
+import bg2 from "../../assets/bg2.png"
+import { useState } from "react";
 
 
 const Nav = () => {
+    const [showBanner, setShowBanner] = useState(false)
 
+    const handleBanner = (value) => {
+        setShowBanner(value);
+    }
+
+    // const { pathname } = useLocation();
+    // if (pathname === "/applied") {
+    //     setShowBanner(true)
+    // }
+    // console.log(pathname === "/applied");
 
     const links = <>
-        <NavLink to="/" className={({ isActive }) => isActive ? "font-bold bg-gradient-to-r from-[#7E90FE] to-[#9873FF] text-transparent bg-clip-text" : ""}>Home</NavLink>
+        <NavLink to="/"
+            onClick={() => handleBanner(false)}
+            className={({ isActive }) => isActive ? "font-bold bg-gradient-to-r from-[#7E90FE] to-[#9873FF] text-transparent bg-clip-text" : ""}>Home</NavLink>
         <NavLink to="/Statistics" className={({ isActive }) => isActive ? "font-bold bg-gradient-to-r from-[#7E90FE] to-[#9873FF] text-transparent bg-clip-text" : ""}>Statistics</NavLink>
-        <NavLink to="/applied" className={({ isActive }) => isActive ? "font-bold bg-gradient-to-r from-[#7E90FE] to-[#9873FF] text-transparent bg-clip-text" : ""}>Applied Jobs</NavLink>
+        <NavLink to="/applied"
+            onClick={() => handleBanner(true)}
+            className={({ isActive }) => isActive ? "font-bold bg-gradient-to-r from-[#7E90FE] to-[#9873FF] text-transparent bg-clip-text" : ""}>Applied Jobs</NavLink>
         <NavLink to="/blogs" className={({ isActive }) => isActive ? "font-bold bg-gradient-to-r from-[#7E90FE] to-[#9873FF] text-transparent bg-clip-text" : ""}>Blog</NavLink>
     </>
 
     return (
-        <div>
-            <div className="navbar mt-7">
+        <div className={showBanner && "bg-gradient-to-r from-[#7E90FE1A] to-[#9873FF1A] relative"}>
+            <div className="navbar pt-7 max-w-7xl px-4 md:px-0 md:w-[80%] mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -34,8 +51,18 @@ const Nav = () => {
                     <a className="btn bg-gradient-to-r from-[#7E90FE] to-[#9873FF] font-semibold text-white">Star Applying</a>
                 </div>
             </div>
+
+            {
+                showBanner && <div className="flex items-center justify-center h-60">
+                    <img className="absolute left-0 bottom-0" src={bg1} alt="" />
+                    <h2 className="text-center text-2xl font-bold">Applied Jobs</h2>
+                    <img className="absolute right-0 top-0" src={bg2} alt="" />
+                </div>
+            }
+
         </div>
     );
 };
+
 
 export default Nav;
