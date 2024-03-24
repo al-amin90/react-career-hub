@@ -47,7 +47,7 @@ const AppliedJobs = () => {
                 <div>
                     <label className="flex justify-end mb-3">
                         <select defaultValue={"all"} onChange={(e) => handleDisplay(e.target.value)} className="select bg-[#F4F4F4] text-base font-medium">
-                            <option disabled selected>Filter By</option>
+                            <option disabled value={""}>Filter By</option>
                             <option
                                 value="all">All</option>
                             <option

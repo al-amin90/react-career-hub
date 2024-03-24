@@ -11,11 +11,8 @@ const Nav = () => {
         setShowBanner(value);
     }
 
-    // const { pathname } = useLocation();
-    // if (pathname === "/applied") {
-    //     setShowBanner(true)
-    // }
-    // console.log(pathname === "/applied");
+    const { pathname } = useLocation();
+    const detailesPage = pathname.includes("/jobDetails/")
 
     const links = <>
         <NavLink to="/"
@@ -29,7 +26,7 @@ const Nav = () => {
     </>
 
     return (
-        <div className={showBanner && "bg-gradient-to-r from-[#7E90FE1A] to-[#9873FF1A] relative"}>
+        <div className={(showBanner || detailesPage) ? "bg-gradient-to-r from-[#7E90FE1A] to-[#9873FF1A] relative" : ""}>
             <div className="navbar pt-7 max-w-7xl px-4 md:px-0 md:w-[80%] mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -53,9 +50,10 @@ const Nav = () => {
             </div>
 
             {
-                showBanner && <div className="flex items-center justify-center h-60">
+
+                (showBanner || detailesPage) && <div className="flex items-center justify-center h-60">
                     <img className="absolute left-0 bottom-0" src={bg1} alt="" />
-                    <h2 className="text-center text-2xl font-bold">Applied Jobs</h2>
+                    <h2 className="text-center text-2xl font-bold">{detailesPage ? "Job Details" : "Applied Jobs"}</h2>
                     <img className="absolute right-0 top-0" src={bg2} alt="" />
                 </div>
             }
